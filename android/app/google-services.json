@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "804250378226",
+    "project_id": "bts-offline-music-19ef2",
+    "storage_bucket": "bts-offline-music-19ef2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804250378226:android:ce3b46487263038643d56b",
+        "android_client_info": {
+          "package_name": "com.twenty2ages.bts_offline_music_2021"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804250378226-3o0s40pr964e11jme35q9lfl873m530u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAohqDRorARQL_sz04_B3W63JsFdHjDEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804250378226-3o0s40pr964e11jme35q9lfl873m530u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
