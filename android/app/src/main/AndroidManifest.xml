@@ -7,7 +7,7 @@
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
    <application
-        android:label="BTS Offline Music"
+        android:label="BTS Offline Songs"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
