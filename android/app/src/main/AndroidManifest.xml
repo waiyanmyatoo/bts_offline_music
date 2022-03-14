@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.twenty2ages.bts_offline_music_2021">
+    package="com.twenty2ages.bts_offline_songs">
 
     <!-- ADD THESE TWO PERMISSIONS -->
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
