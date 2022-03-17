@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.twenty2ages.bts_offline_music_2021">
+    package="com.twenty2ages.bts_offline_songs">
 
     <!-- ADD THESE TWO PERMISSIONS -->
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -7,7 +7,7 @@
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
    <application
-        android:label="BTS Offline Music"
+        android:label="BTS Offline Songs"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
