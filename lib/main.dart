@@ -6,6 +6,8 @@ import 'package:bts_offline_music_2021/pages/home_page.dart';
 import 'package:bts_offline_music_2021/pages/now_playing_page.dart';
 import 'package:bts_offline_music_2021/providers.dart';
 import 'package:bts_offline_music_2021/utils/AppTheme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +26,13 @@ import 'common.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
+
+  await Firebase.initializeApp();
+  FirebaseMessaging.instance.getInitialMessage();
+  FirebaseMessaging.instance.sendMessage();
+  var token = await FirebaseMessaging.instance.getToken();
+  print("Print Instance Token ID: " + token!);
 
   MobileAds.instance.initialize();
 

@@ -92,7 +92,9 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
 
   void createBannerAd() {
     _banner = BannerAd(
-      adUnitId: Secret.banner_ad_units,
+      // adUnitId: Secret.banner_ad_units,
+      /// testing unit
+      adUnitId: "ca-app-pub-3940256099942544/6300978111",
       size: AdSize.banner,
       request: AdRequest(),
       listener: BannerAdListener(
