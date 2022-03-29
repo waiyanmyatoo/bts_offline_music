@@ -44,7 +44,7 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     preferencesPrefix: 'rateMyApp_',
     minDays: 3,
     minLaunches: 7,
-    googlePlayIdentifier: "com.twenty2ages.bts_offline_music_2021",
+    googlePlayIdentifier: "com.twenty2ages.bts_offline_songs",
     remindDays: 2,
     remindLaunches: 5,
   );
