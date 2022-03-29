@@ -33,6 +33,9 @@ class HomePageWidget extends ConsumerStatefulWidget {
 class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  AppUpdateInfo? _updateInfo;
+	
+
   late BannerAd _banner;
 
   bool _isBannerAdReady = false;
@@ -49,7 +52,8 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
   @override
   void initState() {
     super.initState();
-    createBannerAd();
+
+    // createBannerAd();
     _rateMyApp.init().then((_) {
       // TODO: Comment out this if statement to test rating dialog (Remember to uncomment)
       if (_rateMyApp.shouldOpenDialog) {
@@ -90,73 +94,63 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     });
   }
 
-  void createBannerAd() {
-    _banner = BannerAd(
-      // adUnitId: Secret.banner_ad_units,
-      /// testing unit
-      adUnitId: "ca-app-pub-3940256099942544/6300978111",
-      size: AdSize.banner,
-      request: AdRequest(),
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (Ad ad) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          _isBannerAdReady = false;
-          ad.dispose();
-        },
-        // Called when an ad opens an overlay that covers the screen.
-        // ignore: avoid_print
-        onAdOpened: (Ad ad) {
-          print('${ad.runtimeType} opened.');
-        },
-        // Called when an ad removes an overlay that covers the screen.
-        onAdClosed: (Ad ad) {
-          print('${ad.runtimeType} closed');
-          ad.dispose();
-          createBannerAd();
-          print('${ad.runtimeType} reloaded');
-        },
-        // Called when an ad is in the process of leaving the application.
-        onAdWillDismissScreen: (Ad ad) => print('Left application.'),
-      ),
-    )..load();
-  }
+    // Platform messages are asynchronous, so we initialize in an async method.
+	  // Future<void> checkForUpdate() async {
+	  //   InAppUpdate.checkForUpdate().then((info) {
+	  //     setState(() {
+	  //       _updateInfo = info;
+	  //     });
+	  //   }).catchError((e) {
+	  //     showSnack(e.toString());
+	  //   });
+	  // }
+
+  // void createBannerAd() {
+  //   _banner = BannerAd(
+  //     // adUnitId: Secret.banner_ad_units,
+  //     /// testing unit
+  //     adUnitId: "ca-app-pub-3940256099942544/6300978111",
+  //     size: AdSize.banner,
+  //     request: AdRequest(),
+  //     listener: BannerAdListener(
+  //       // Called when an ad is successfully received.
+  //       onAdLoaded: (Ad ad) {
+  //         setState(() {
+  //           _isBannerAdReady = true;
+  //         });
+  //       },
+  //       // Called when an ad request failed.
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         _isBannerAdReady = false;
+  //         ad.dispose();
+  //       },
+  //       // Called when an ad opens an overlay that covers the screen.
+  //       // ignore: avoid_print
+  //       onAdOpened: (Ad ad) {
+  //         print('${ad.runtimeType} opened.');
+  //       },
+  //       // Called when an ad removes an overlay that covers the screen.
+  //       onAdClosed: (Ad ad) {
+  //         print('${ad.runtimeType} closed');
+  //         ad.dispose();
+  //         createBannerAd();
+  //         print('${ad.runtimeType} reloaded');
+  //       },
+  //       // Called when an ad is in the process of leaving the application.
+  //       onAdWillDismissScreen: (Ad ad) => print('Left application.'),
+  //     ),
+  //   )..load();
+  // }
 
   @override
   void dispose() {
-    _banner.dispose();
+    // _banner.dispose();
     super.dispose();
-  }
-
-  void showSnack(String text) {
-    if (scaffoldKey.currentContext != null) {
-      ScaffoldMessenger.of(scaffoldKey.currentContext!)
-          .showSnackBar(SnackBar(content: Text(text)));
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-
-    // InAppUpdate.checkForUpdate()
-    //     .then(
-    //   (value) => InAppUpdate.performImmediateUpdate().catchError(
-    //     (e) {
-    //       print(e.toString());
-    //     },
-    //   ),
-    // )
-    //     .catchError(
-    //   (err) {
-    //     print(err.toString());
-    //   },
-    // );
     
     return Scaffold(
       key: scaffoldKey,
@@ -176,16 +170,16 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                 children: [
                   Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: _isBannerAdReady
-                            ?  SizedBox(
-                                height: 50,
-                                child: AdWidget(
-                                  ad: _banner,
-                                ),
-                              ) : const SizedBox.shrink(),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.topCenter,
+                      //   child: _isBannerAdReady
+                      //       ?  SizedBox(
+                      //           height: 50,
+                      //           child: AdWidget(
+                      //             ad: _banner,
+                      //           ),
+                      //         ) : const SizedBox.shrink(),
+                      // ),
                       Container(
                         alignment: Alignment.centerLeft,
                         margin: const EdgeInsets.only(
