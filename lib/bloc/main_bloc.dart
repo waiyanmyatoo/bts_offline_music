@@ -1,6 +1,5 @@
 import 'package:bts_offline_music_2021/persistence/share_preference.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_update/in_app_update.dart';
 
 const int maxFailedLoadAttempts = 3;

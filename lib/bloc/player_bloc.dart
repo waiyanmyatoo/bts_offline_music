@@ -6,7 +6,6 @@ import 'package:bts_offline_music_2021/data/vos/playlist_vo.dart';
 import 'package:bts_offline_music_2021/persistence/share_preference.dart';
 import 'package:bts_offline_music_2021/utils/dimens.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';

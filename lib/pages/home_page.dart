@@ -12,8 +12,8 @@ import 'package:bts_offline_music_2021/widgets/music_list_item_view.dart';
 import 'package:bts_offline_music_2021/widgets/now_playing_buttom_view.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -33,15 +33,15 @@ class HomePageWidget extends ConsumerStatefulWidget {
 class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  late BannerAd _banner;
+  // late BannerAd _banner;
 
-  bool _isBannerAdReady = false;
+  // bool _isBannerAdReady = false;
 
   final RateMyApp _rateMyApp = RateMyApp(
     preferencesPrefix: 'rateMyApp_',
     minDays: 3,
     minLaunches: 7,
-    googlePlayIdentifier: "com.twenty2ages.bts_offline_music_2021",
+    googlePlayIdentifier: "com.twenty2ages.bts_offline_songs",
     remindDays: 2,
     remindLaunches: 5,
   );
@@ -49,19 +49,25 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
   @override
   void initState() {
     super.initState();
-    createBannerAd();
+    initialization();
+    // createBannerAd();
     _rateMyApp.init().then((_) {
       // TODO: Comment out this if statement to test rating dialog (Remember to uncomment)
       if (_rateMyApp.shouldOpenDialog) {
         _rateMyApp.showRateDialog(
           context,
-          title: 'Rate this app', // The dialog title.
+          title: 'Rate this app',
+          // The dialog title.
           message:
-              'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.', // The dialog message.
-          rateButton: 'RATE', // The dialog "rate" button text.
-          noButton: 'NO THANKS', // The dialog "no" button text.
+              'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.',
+          // The dialog message.
+          rateButton: 'RATE',
+          // The dialog "rate" button text.
+          noButton: 'NO THANKS',
+          // The dialog "no" button text.
           laterButton: 'MAYBE LATER',
-          barrierDismissible: false, // The dialog "later" button text.
+          barrierDismissible: false,
+          // The dialog "later" button text.
           listener: (button) {
             // The button click listener (useful if you want to cancel the click event).
             switch (button) {
@@ -78,9 +84,10 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
 
             return true; // Return false if you want to cancel the click event.
           },
-          ignoreNativeDialog: Platform
-              .isAndroid, // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
-          dialogStyle: const DialogStyle(), // Custom dialog styles.
+          ignoreNativeDialog: Platform.isAndroid,
+          // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
+          dialogStyle: const DialogStyle(),
+          // Custom dialog styles.
           onDismissed: () => _rateMyApp.callEvent(RateMyAppEventType
               .laterButtonPressed), // Called when the user dismissed the dialog (either by taping outside or by pressing the "back" button).
           // contentBuilder: (context, defaultContent) => content, // This one allows you to change the default dialog content.
@@ -90,44 +97,50 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     });
   }
 
-  void createBannerAd() {
-    _banner = BannerAd(
-      adUnitId: Secret.banner_ad_units,
-      size: AdSize.banner,
-      request: AdRequest(),
-      listener: BannerAdListener(
-        // Called when an ad is successfully received.
-        onAdLoaded: (Ad ad) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
-        },
-        // Called when an ad request failed.
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          _isBannerAdReady = false;
-          ad.dispose();
-        },
-        // Called when an ad opens an overlay that covers the screen.
-        // ignore: avoid_print
-        onAdOpened: (Ad ad) {
-          print('${ad.runtimeType} opened.');
-        },
-        // Called when an ad removes an overlay that covers the screen.
-        onAdClosed: (Ad ad) {
-          print('${ad.runtimeType} closed');
-          ad.dispose();
-          createBannerAd();
-          print('${ad.runtimeType} reloaded');
-        },
-        // Called when an ad is in the process of leaving the application.
-        onAdWillDismissScreen: (Ad ad) => print('Left application.'),
-      ),
-    )..load();
+  void initialization() async {
+    await Future.delayed(const Duration(seconds: 3))
+        .then((value) => FlutterNativeSplash.remove());
+    print('splash screen removed');
   }
+
+  // void createBannerAd() {
+  //   _banner = BannerAd(
+  //     adUnitId: Secret.banner_ad_units,
+  //     size: AdSize.banner,
+  //     request: AdRequest(),
+  //     listener: BannerAdListener(
+  //       // Called when an ad is successfully received.
+  //       onAdLoaded: (Ad ad) {
+  //         setState(() {
+  //           _isBannerAdReady = true;
+  //         });
+  //       },
+  //       // Called when an ad request failed.
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         _isBannerAdReady = false;
+  //         ad.dispose();
+  //       },
+  //       // Called when an ad opens an overlay that covers the screen.
+  //       // ignore: avoid_print
+  //       onAdOpened: (Ad ad) {
+  //         print('${ad.runtimeType} opened.');
+  //       },
+  //       // Called when an ad removes an overlay that covers the screen.
+  //       onAdClosed: (Ad ad) {
+  //         print('${ad.runtimeType} closed');
+  //         ad.dispose();
+  //         createBannerAd();
+  //         print('${ad.runtimeType} reloaded');
+  //       },
+  //       // Called when an ad is in the process of leaving the application.
+  //       onAdWillDismissScreen: (Ad ad) => print('Left application.'),
+  //     ),
+  //   )..load();
+  // }
 
   @override
   void dispose() {
-    _banner.dispose();
+    // _banner.dispose();
     super.dispose();
   }
 
@@ -155,7 +168,7 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     //     print(err.toString());
     //   },
     // );
-    
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: primaryColor,
@@ -174,16 +187,16 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                 children: [
                   Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: _isBannerAdReady
-                            ?  SizedBox(
-                                height: 50,
-                                child: AdWidget(
-                                  ad: _banner,
-                                ),
-                              ) : const SizedBox.shrink(),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.topCenter,
+                      //   child: _isBannerAdReady
+                      //       ?  SizedBox(
+                      //           height: 50,
+                      //           child: AdWidget(
+                      //             ad: _banner,
+                      //           ),
+                      //         ) : const SizedBox.shrink(),
+                      // ),
                       Container(
                         alignment: Alignment.centerLeft,
                         margin: const EdgeInsets.only(
