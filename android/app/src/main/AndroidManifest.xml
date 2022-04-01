@@ -9,7 +9,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="BTS Offline Songs"
+        android:label="BTS Offline Songs - XXII"
         android:roundIcon="@mipmap/ic_launcher_round">
         <activity
             android:name="com.ryanheise.audioservice.AudioServiceActivity"
