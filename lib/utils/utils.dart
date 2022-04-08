@@ -8,6 +8,6 @@ extension FileName on String {
   }
 
   String get imgFile {
-    return imgPath + this + ".jpg";
+    return imgPath + "playstore" + ".png";
   }
 }
